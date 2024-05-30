@@ -23,6 +23,7 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
+    'mfussenegger/nvim-dap-python',
   },
   config = function()
     local dap = require 'dap'
@@ -42,9 +43,26 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'python',
+        'cpptools',
       },
     }
 
+    -- dap.configurations.python = {
+    --   {
+    --     name = 'debug file',
+    --     type = 'python',
+    --     request = 'launch',
+    --     program = '${file}',
+    --     pythonPath = function()
+    --       local virt_env_py = os.getenv 'VIRTUAL_ENV' .. '/bin/python'
+    --       if vim.fn.executable(virt_env_py) then
+    --         return virt_env_py
+    --       end
+    --       return '/usr/bin/python3'
+    --     end,
+    --   },
+    -- }
     -- Basic debugging keymaps, feel free to change to your liking!
     vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })
     vim.keymap.set('n', '<F1>', dap.step_into, { desc = 'Debug: Step Into' })
@@ -92,5 +110,6 @@ return {
         detached = vim.fn.has 'win32' == 0,
       },
     }
+    require('dap-python').setup(require('mason-registry').get_package('debugpy'):get_install_path() .. '/venv/bin/python3')
   end,
 }
