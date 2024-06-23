@@ -196,6 +196,9 @@ vim.keymap.set('n', '<leader>x', ':bdelete<CR>', { desc = 'Close Buffer' })
 
 --save on Ctr-S
 vim.keymap.set('n', '<C-s>', '<cmd>write<CR>', { desc = 'Write buffer' })
+
+--Search and replace word
+vim.keymap.set('n', 'fr', ':%s/<C-r><C-w>//gc<Left><Left><Left>', { desc = '[F]earch and [R]eplace word' })
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
