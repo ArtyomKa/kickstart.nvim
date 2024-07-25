@@ -211,6 +211,7 @@ return {
         'flake8',
         'clang-format',
         'markdownlint',
+        'cmakelang',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
